@@ -1,0 +1,53 @@
+---
+title: My talk
+author: Rob J Hyndman
+titlefontsize: 22pt
+toc: true
+  binb::monash:
+    colortheme: monashblue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=11))
+```
+
+# Intro
+
+## The past
+
+ * TeX, LaTeX
+ * Wordstar2000
+ * MS-Word or equivalent
+ * HTML, Joomla, Wordpress, Drupal, ...
+ * Beamer, ???
+
+## Resistance
+
+Twitter exchange with Yihui Xie about makefiles
+
+## Conversion
+
+  * Website
+  * Blog
+  * Textbooks
+  * Academic papers
+  * Slides
+  * CV
+  * Theses
+  * Memos 
+  * Referee reports
+  * Letters
+  * Exams
+  * Reports
+
+## What have I lost?
+
+## What have I gained?
+
+## What's next?
+
+  * Shopping list?
+  * Texts
+  * Emails
+  * Twitter posts
+

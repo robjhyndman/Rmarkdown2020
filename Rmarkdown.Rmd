@@ -1,53 +1,299 @@
 ---
-title: My talk
+title: How Rmarkdown changed my life
 author: Rob J Hyndman
-titlefontsize: 22pt
-toc: true
+date: 30 January 2020
+titlefontsize: 28pt
+toc: false
+output:
   binb::monash:
-    colortheme: monashblue
+    includes:
+      in_header: header.tex
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=11))
+## Let's go back in time
+
+\only<2-4>{\placefig{0}{1.35}{width=4cm}{rjh_baby}}
+\only<3-4>{\placefig{4.5}{3.35}{width=4cm}{rjh_child}}
+\only<4>{\placefig{9}{5.35}{width=4cm}{rjh_teen}}
+
+# Writing papers and reports
+
+## Wordstar 2000
+
+\full{wordstar2000}
+
+## WordPerfect
+
+\full{WordPerfect-6}
+
+## TeX/LaTeX
+
+\full{WinEdt-TeX}
+
+## S
+
+\placefig{0}{1.35}{height=4.8cm}{the_s_books_long}
+
+\begin{textblock}{8}(0.5,6.2)\fontsize{7}{7}\sf Photo credit: Rasmus Bååth\end{textblock}
+
+## S+
+
+\full{splus}
+
+## R (c.2000)
+
+\full{earlyR}
+
+## Makefiles
+
+\full{make1}
+
+## Makefiles
+\fontsize{5}{5}\sf
+
+```
+# Usually, only these lines need changing
+TEXFILE= paper
+RDIR= .
+FIGDIR= ./figs
+
+# list R files
+RFILES := $(wildcard $(RDIR)/*.R)
+# pdf figures created by R
+PDFFIGS := $(wildcard $(FIGDIR)/*.pdf)
+# Indicator files to show R file has run
+OUT_FILES:= $(RFILES:.R=.Rout)
+# Indicator files to show pdfcrop has run
+CROP_FILES:= $(PDFFIGS:.pdf=.pdfcrop)
+
+all: $(TEXFILE).pdf $(OUT_FILES) $(CROP_FILES)
+
+# May need to add something here if some R files depend on others.
+
+# RUN EVERY R FILE
+$(RDIR)/%.Rout: $(RDIR)/%.R $(RDIR)/functions.R
+    R CMD BATCH $<
+
+# CROP EVERY PDF FIG FILE
+$(FIGDIR)/%.pdfcrop: $(FIGDIR)/%.pdf
+    pdfcrop $< $< && touch $@
+
+# Compile main tex file and show errors
+$(TEXFILE).pdf: $(TEXFILE).tex $(OUT_FILES) $(CROP_FILES)
+    latexmk -pdf -quiet $(TEXFILE)
+
+# Run R files
+R: $(OUT_FILES)
+
+# View main tex file
+view: $(TEXFILE).pdf
+    evince $(TEXFILE).pdf &
+
+# Clean up stray files
+clean:
+    rm -fv $(OUT_FILES)
+    rm -fv $(CROP_FILES)
+    rm -fv *.aux *.log *.toc *.blg *.bbl *.synctex.gz
+    rm -fv *.out *.bcf *blx.bib *.run.xml
+    rm -fv *.fdb_latexmk *.fls
+    rm -fv $(TEXFILE).pdf
+
+.PHONY: all clean
 ```
 
-# Intro
+## Makefiles
 
-## The past
+\full{make2}
 
- * TeX, LaTeX
- * Wordstar2000
- * MS-Word or equivalent
- * HTML, Joomla, Wordpress, Drupal, ...
- * Beamer, ???
+## Rmarkdown templates
 
-## Resistance
+\begin{textblock}{6}(.1,1.4)
+  \fbox{\includegraphics[height=7.8cm]{monashwp}}
+\end{textblock}
 
-Twitter exchange with Yihui Xie about makefiles
+\only<2-3>{\begin{textblock}{6}(6.5,1.4)
+  \fbox{\includegraphics[height=7.8cm]{monashreport}}
+\end{textblock}}
 
-## Conversion
+\only<3>{\begin{textblock}{11}(1,6.3)
+\begin{alertblock}{Templates}
+\faicon{github} \texttt{robjhyndman/MonashEBSTemplates}
+\begin{itemize}
+\item \texttt{MonashEBSTemplates::workingpaper}
+\item \texttt{MonashEBSTemplates::report}
+\end{itemize}
+\end{alertblock}
+\end{textblock}}
 
-  * Website
-  * Blog
-  * Textbooks
-  * Academic papers
-  * Slides
-  * CV
-  * Theses
-  * Memos 
-  * Referee reports
-  * Letters
-  * Exams
-  * Reports
+# Evolution of a website
 
-## What have I lost?
+## Evolution of a website
 
-## What have I gained?
+\only<1>{\full{rjh1}}
+\only<2>{\full{rjh2}}
+\only<3>{\full{rjh3}}
+\only<4>{\full{rjh4}}
+\only<5>{\full{rjh5}}
+\only<6>{\full{rjh6}}
+\only<7>{\full{wordpress}}
+\only<8>{\full{rjh7}}
+\only<9-10>{\full{rjh8}}
+  \only<7-10>{\begin{textblock}{4}(8,8.5)\begin{block}{}\textbf{robjhyndman.com}\end{block}\end{textblock}}
 
-## What's next?
+\only<10>{\begin{textblock}{6.2}(.7,6.7)
+  \begin{alertblock}{Blogdown theme}\fontsize{13}{14}\sf
+  \faicon{github} \texttt{rbind/robjhyndman}\\
+  (Adaptation of \textbf{hugo-finite} with inspiration from Kieran Healy.)
+   \end{alertblock}
+ \end{textblock}}
 
-  * Shopping list?
-  * Texts
-  * Emails
-  * Twitter posts
+# An online publishing venture
 
+## Online publishing
+
+\only<1>{\full{fpp_wp}}
+\only<2>{\full{fpp_drupal}}
+\only<3-5>{\full{fpp_bookdown}}
+\only<4-5>{
+  \begin{textblock}{5.4}(7.1,0)
+  \begin{block}{}
+  \includegraphics[width=5.4cm]{fpp_pdf}
+  \end{block}
+  \end{textblock}}
+\only<5>{\begin{textblock}{6.2}(.5,6.9)
+  \begin{alertblock}{Bookdown theme}
+  \begin{itemize}
+  \item Simple css styling
+  \item Complicated LaTeX styling
+  \end{itemize}
+  \end{alertblock}
+ \end{textblock}}
+
+# Making slides
+## Making slides
+
+\only<1>{\full{slides_old}}
+\only<2>{\full{slides_prosper}}
+\only<3>{\full{slides_beamer}}
+\only<4-5>{\full{slides_rmarkdown}}
+\only<5>{\begin{textblock}{3.3}(8.3,7.85)
+  \begin{alertblock}{Template}
+    \texttt{binb::monash}
+   \end{alertblock}
+ \end{textblock}}
+
+\begin{textblock}{3.02}(9.5,.2)
+\begin{block}{}%
+  \only<1>{LaTeX seminar}%
+  \only<2>{LaTeX prosper}%
+  \only<3>{LaTeX beamer}%
+  \only<4-5>{Rmarkdown}\phantom{p}\hspace*{-0.3cm}
+\end{block}%
+\end{textblock}
+
+# Curriculum vitae
+## Curriculum vitae
+
+\placefig{0.5}{1.35}{height=8.3cm}{cv}
+
+\only<2>{\begin{textblock}{4}(7.5,2.85)
+  \begin{alertblock}{Template}\centering
+    \texttt{vitae::hyndman}\\[0.2cm]
+    \includegraphics[width=3.5cm]{vitae}
+   \end{alertblock}
+ \end{textblock}}
+
+# Theses
+## Theses
+
+\begin{textblock}{6}(.1,1.4)
+  \fbox{\includegraphics[height=7.8cm]{thesis}}
+\end{textblock}
+\only<2>{\begin{textblock}{5.8}(6.6,2.85)\fontsize{12}{12}\sf
+  \begin{alertblock}{Template}\centering
+    \faicon{github} \texttt{robjhyndman/MonashThesis}
+   \end{alertblock}
+ \end{textblock}}
+
+# Memos
+## Memos
+
+\begin{textblock}{6}(.1,1.4)
+  \fbox{\includegraphics[height=7.8cm]{Tutors}}
+\end{textblock}
+
+\only<2-3>{\begin{textblock}{6}(6.5,1.4)
+  \fbox{\includegraphics[height=7.8cm]{OPRE_2019_review}}
+\end{textblock}}
+
+\only<3>{\begin{textblock}{8.5}(2,6.99)
+\begin{alertblock}{Template}
+\faicon{github} \texttt{robjhyndman/MonashEBSTemplates}
+\begin{itemize}
+\item \texttt{MonashEBSTemplates::memo}
+\end{itemize}
+\end{alertblock}
+\end{textblock}}
+
+# Letters
+## Letters
+
+\begin{textblock}{6}(.1,1.4)
+  \fbox{\includegraphics[height=7.8cm]{letter}}
+\end{textblock}
+
+\only<2>{\begin{textblock}{6.4}(6.2,2.85)\fontsize{11}{11}\sf
+\begin{alertblock}{Template}
+\faicon{github} \texttt{robjhyndman/MonashEBSTemplates}%
+\begin{itemize}
+\item \texttt{MonashEBSTemplates::letter}%
+\end{itemize}%
+\end{alertblock}
+\end{textblock}}
+
+# Exams
+## Exams
+
+\begin{textblock}{6}(.1,1.4)
+  \fbox{\includegraphics[height=7.8cm]{exam1}}
+\end{textblock}
+
+\only<2-3>{\begin{textblock}{6}(6.5,1.4)
+  \fbox{\includegraphics[height=7.8cm]{exam2}}
+\end{textblock}}
+
+\only<3>{\begin{textblock}{8.5}(2,6.99)
+\begin{alertblock}{Template}
+\faicon{github} \texttt{robjhyndman/MonashEBSTemplates}
+\begin{itemize}
+\item \texttt{MonashEBSTemplates::exam}
+\end{itemize}
+\end{alertblock}
+\end{textblock}}
+
+## Conclusions
+
+#### What have I lost?
+
+ * The ability to write Makefiles
+
+\pause
+
+#### What have I gained?
+
+ * Speed
+ * Simplicity
+ * Reproducibility
+ * Version control
+
+\pause
+
+#### What's next?
+
+  * Tennis club website\only<4>{~\alert{\faicon{check}}}
+  * Shopping list
+  * email, SMS, tweets, social media
+
+## Thanks Yihui
+
+\full{yihui}

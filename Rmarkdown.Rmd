@@ -142,8 +142,8 @@ clean:
 
 \only<10>{\begin{textblock}{6.2}(.7,6.7)
   \begin{alertblock}{Blogdown theme}\fontsize{13}{14}\sf
-  \faicon{github} \texttt{rbind/robjhyndman}\\
-  (Adaptation of \textbf{hugo-finite} with inspiration from Kieran Healy.)
+  \faicon{github} \texttt{rbind/robjhyndman.com}\\
+  \emph{(Adaptation of \textbf{hugo-finite} with inspiration from Kieran Healy)}
    \end{alertblock}
  \end{textblock}}
 

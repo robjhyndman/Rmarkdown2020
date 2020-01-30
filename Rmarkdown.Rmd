@@ -267,7 +267,7 @@ clean:
   \fbox{\includegraphics[height=7.8cm]{letter}}
 \end{textblock}
 
-\only<2>{\begin{textblock}{6.4}(6.2,2.85)\fontsize{11}{11}\sf
+\only<2-3>{\begin{textblock}{6.4}(6.2,1.85)\fontsize{11}{11}\sf
 \begin{alertblock}{Template}
 \faicon{github} \texttt{robjhyndman/MonashEBSTemplates}%
 \begin{itemize}
@@ -275,6 +275,8 @@ clean:
 \end{itemize}%
 \end{alertblock}
 \end{textblock}}
+
+\only<3>{\placefig{0.2}{5}{width=11cm}{letter_yaml}}
 
 # Exams
 ## Exams
@@ -287,7 +289,7 @@ clean:
   \fbox{\includegraphics[height=7.8cm]{exam2}}
 \end{textblock}}
 
-\only<3>{\begin{textblock}{8.5}(2,6.99)
+\only<3>{\begin{textblock}{8.5}(3.5,.1)
 \begin{alertblock}{Template}
 \faicon{github} \texttt{robjhyndman/MonashEBSTemplates}
 \begin{itemize}
@@ -295,6 +297,8 @@ clean:
 \end{itemize}
 \end{alertblock}
 \end{textblock}}
+
+\only<3>{\placefig{4}{3}{width=8.5cm}{exam_yaml}}
 
 ## Conclusions
 
@@ -322,3 +326,9 @@ clean:
 ## Thanks Yihui
 
 \full{yihui}
+
+\begin{textblock}{11.2}(0.7,8.4)
+\begin{alertblock}{}
+Slides and package links: \texttt{robjhyndman.com/rmd2020}
+\end{alertblock}
+\end{textblock}

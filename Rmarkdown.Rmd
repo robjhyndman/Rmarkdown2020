@@ -161,6 +161,10 @@ clean:
 
 # An online publishing venture
 
+## My first book (1998)
+
+\full{mwh3}
+
 ## Online publishing
 
 \only<1>{\full{fpp_wp}}
@@ -190,8 +194,8 @@ clean:
 \only<1>{\full{slides_old}}
 \only<2>{\full{slides_prosper}}
 \only<3>{\full{slides_beamer}}
-\only<4-5>{\full{slides_rmarkdown}}
-\only<5>{\begin{textblock}{3.3}(8.3,7.85)
+\only<4-6>{\full{slides_rmarkdown}}
+\only<5-6>{\begin{textblock}{3.3}(8.3,7.85)
   \begin{alertblock}{Template}
     \texttt{binb::monash}
    \end{alertblock}
@@ -202,9 +206,11 @@ clean:
   \only<1>{LaTeX seminar}%
   \only<2>{LaTeX prosper}%
   \only<3>{LaTeX beamer}%
-  \only<4-5>{Rmarkdown}\phantom{p}\hspace*{-0.3cm}
+  \only<4-6>{Rmarkdown}\phantom{p}\hspace*{-0.3cm}
 \end{block}%
 \end{textblock}
+
+\only<6>{\placefig{5}{3}{width=8cm}{binb_yaml}}
 
 # Curriculum vitae
 ## Curriculum vitae

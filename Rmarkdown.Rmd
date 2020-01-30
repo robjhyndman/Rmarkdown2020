@@ -1,11 +1,12 @@
 ---
 title: How Rmarkdown changed my life
 author: Rob J Hyndman
-date: 30 January 2020
+date: "@robjhyndman"
 titlefontsize: 28pt
 toc: false
 output:
   binb::monash:
+    keep_tex: yes
     includes:
       in_header: header.tex
 ---
@@ -125,6 +126,17 @@ clean:
 \end{alertblock}
 \end{textblock}}
 
+## Rmarkdown templates
+
+\placefig{0}{1.2}{height=8.3cm}{wp_yaml}
+\only<2->{\begin{textblock}{6.3}(6.4,.3)
+  \begin{block}{}
+  \only<2>{\colorbox{white}{\includegraphics[height=8.5cm]{comp1}}}
+  \only<3>{\colorbox{white}{\includegraphics[height=8.5cm]{comp2}}}
+  \only<4>{\colorbox{white}{\includegraphics[height=8.5cm]{comp3}}}
+  \end{block}\end{textblock}}
+
+
 # Evolution of a website
 
 ## Evolution of a website
@@ -153,14 +165,17 @@ clean:
 
 \only<1>{\full{fpp_wp}}
 \only<2>{\full{fpp_drupal}}
-\only<3-5>{\full{fpp_bookdown}}
-\only<4-5>{
+\only<3>{\full{fpp3}}
+\only<3->{\begin{textblock}{6}(6,-.1)\begin{alertblock}{}%
+\fontsize{24}{24}\sf\bfseries OTexts.com/fpp3\end{alertblock}\end{textblock}}
+\only<4-6>{\full{fpp_bookdown}}
+\only<6>{
   \begin{textblock}{5.4}(7.1,0)
   \begin{block}{}
   \includegraphics[width=5.4cm]{fpp_pdf}
   \end{block}
   \end{textblock}}
-\only<5>{\begin{textblock}{6.2}(.5,6.9)
+\only<5-6>{\begin{textblock}{6.2}(.5,6.9)
   \begin{alertblock}{Bookdown theme}
   \begin{itemize}
   \item Simple css styling
@@ -194,14 +209,22 @@ clean:
 # Curriculum vitae
 ## Curriculum vitae
 
-\placefig{0.5}{1.35}{height=8.3cm}{cv}
+\only<1-3>{\placefig{0.5}{1.35}{height=8.3cm}{cv}}
+\only<4>{\placefig{0.5}{1.35}{height=8.3cm}{cv2}}
+\only<5>{\placefig{0.5}{1.35}{height=8.3cm}{cv4}}
+\only<6>{\placefig{0.5}{1.35}{height=8.3cm}{cv3}}
 
-\only<2>{\begin{textblock}{4}(7.5,2.85)
+\only<2->{\begin{textblock}{4}(8,.2)
   \begin{alertblock}{Template}\centering
-    \texttt{vitae::hyndman}\\[0.2cm]
+    \only<2-3>{\texttt{vitae::hyndman}}
+    \only<4>{\texttt{vitae::awesomecv}}
+    \only<5>{\texttt{vitae::latexcv}}
+    \only<6>{\texttt{vitae::moderncv}}\\[0.2cm]
     \includegraphics[width=3.5cm]{vitae}
    \end{alertblock}
  \end{textblock}}
+
+\only<3>{\placefig{.5}{6.2}{width=11cm}{cv_yaml}}
 
 # Theses
 ## Theses
@@ -234,6 +257,8 @@ clean:
 \end{itemize}
 \end{alertblock}
 \end{textblock}}
+
+\only<3>{\placefig{.6}{3.4}{width=5cm}{memo_yaml}}
 
 # Letters
 ## Letters
